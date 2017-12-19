@@ -48,7 +48,9 @@ func TestSimpleSourceCode(t *testing.T) {
 		x + y;
 	};
 	
-	let result = add(five, ten);`
+	let result = add(five, ten);
+	"foobar"
+	"foo bar"`
 
 	tests := []struct {
 		expectedType    token.TokenType
@@ -90,7 +92,10 @@ func TestSimpleSourceCode(t *testing.T) {
 		{token.IDENT, "ten"},
 		{token.RPAREN, ")"},
 		{token.SEMICOLON, ";"},
-		{token.EOF, ""}}
+		{token.STRING, "foobar"},
+		{token.STRING, "foo bar"},
+		{token.EOF, ""},
+	}
 
 	lexer := New(input)
 
